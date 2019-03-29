@@ -3,21 +3,110 @@ import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
 
+// este es un componente funcional
+function MiComponenteFuncional() {
+  return <p>Hola Mundo "Mi componente funcional"</p>;
+}
+
+/** 
+ * así como los componentes funcionales, existe su alternativa basada 
+ * en clases de JS.
+ * 
+ * Ambos los componentes funcionales y de clases son las formas a travez
+ * de las cuales podemos representar un componente.
+ * 
+ * Cada una de estas formas tienen sus PROS y sus CONTRAS. Ademas de sus
+ * limitaciones.
+*/
+
+// para escribir un componente de clases tenemos que declarar la clase. 
+// Y tiene que heredar de esta clase Component que estamos importando de la libreria de REACT.
+/**
+ * La principal caracteristica que distingue a un componente de clase es que tiene un metodo render()
+ * que retorna lo que debe mostrar dicho componente o como se debe representar este componente dentro de la página web.
+ */
+class MiComponenteDeClase extends Component {
+  render() {
+    return <p>Hola soy de "Mi Componente de Clase"</p>;
+  }
+}
+
+/**
+ * Para utilizar cualquiera de estos 2 componentes, podemos utilizar el nombre de la función o de la clase.
+ * Ejemplo: 
+ * - < MiComponenteDeClase />
+ * - < MiComponenteFuncional />
+ * 
+ */
+
+// 02. PROPS
+
+/**
+ * Cada componente debe buscar ser su propio mundo y no debera usar información externa a el mismo.
+ * 
+ * Las PROPS en RAECT son las propiedades de creación del componente, es decir, información que establecemos 
+ * para un componente cuando lo creamos.
+ * Esta es la forma a travez de la cual un componente padre pasa información hacia los componentes hijos.
+ * 
+ * En resumen de las PROPS, toda la información que el componente necesita del exterior la tiene que recibir via PROPS.
+ * Los PROPS son readonly, es decir, un componente no puede modificar sus propias PROPS, sola las puede leer.
+ * Cuando el valor que se pasa via PROPS a un componente, se actualiza o se modifica. El componente se actualiza automaticamente.
+ * 
+ * Las PROPS es uno de los conceptos fundamentales del trabajo con REACT, porque es a travez de ellos que pasamos información de inicialización a nuestros componentes.
+ */
+
+// SIN PROPS
+let nombreUno = "Francisco";
+
+function A() {
+  return <p>Hola A {nombreUno}</p>;
+}
+function B() {
+  return <p>Hola B {nombreUno}</p>;
+}
+// con PROPS
+
+function C(props) {
+  return <p>Hola C {props.nombre}</p>;
+}
+function D(props) {
+  return <p>Hola D {props.nombre}</p>;
+}
+
+// 03.JSX
+
+/**
+ * Para representar las interfaces de un componente utilizamos JSX, una extensión de JS que nos permite representar los
+ * elementos de REACT que vamos a crear usando una sintaxis similar a HTML.
+ * En JSX creamos elementos de REACT colocando el nombre del componente dentro de <MiComponente />
+ */
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       name: 'React'
     };
-  }
+  }  
 
   render() {
+    let nombreDos = "Jherson";
     return (
       <div>
         <Hello name={this.state.name} />
         <p>
           Start editing to see some magic happen :)
+          <A />
+          <B />
+          <C nombre={nombreDos}/>
+          <D nombre={nombreDos}/>
         </p>
+        <div>
+          <MiComponenteFuncional />
+        </div>
+        <div>
+          <MiComponenteDeClase />
+        </div>
       </div>
     );
   }
