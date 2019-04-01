@@ -44,8 +44,7 @@ class MiComponenteDeClase extends Component {
 /**
  * Cada componente debe buscar ser su propio mundo y no debera usar información externa a el mismo.
  * 
- * Las PROPS en RAECT son las propiedades de creación del componente, es decir, información que establecemos 
- * para un componente cuando lo creamos.
+ * Las PROPS en RAECT son las propiedades de creación del componente, es decir, información que establecemos para un componente cuando lo creamos.
  * Esta es la forma a travez de la cual un componente padre pasa información hacia los componentes hijos.
  * 
  * En resumen de las PROPS, toda la información que el componente necesita del exterior la tiene que recibir via PROPS.
@@ -81,6 +80,50 @@ function D(props) {
  * En JSX creamos elementos de REACT colocando el nombre del componente dentro de <MiComponente />
  */
 
+// 04. state
+/** 
+ * En REACT los componentes pueden guardar un estado interno para sus propiedades y las modificaciones que estas sufran, esto nos permite actualizar la información que el usuario nos mande, guardar datos que hayamos descargado,etc.
+ * El estado es todo lo que puede sufrir una modificación dentro de un componente,
+ * recuerda que dijimos que las PROPS no se pueden modificar, bueno,
+ * cualquier cosa que si se pueda modificar es el estado del componente.
+ */
+/**
+ * Tradicionalmente el estado de un componente esta relacionado con los
+ * componentes de clase, ya que no fu si no hasta REACT 16.8 que acaba
+ * de salir hace poco, que se introdujo una manera de conservar estado
+ * en componentes funcionales.
+ */
+
+/**
+ * el primer paso para guardar un estado, para que mi componente tenga
+ * un estado es que tengo que inicializar  los valores iniciales del
+ * estado dentro del constructor de nuestro componente.
+ * 
+ */
+class Contador extends Component {
+  constructor(props){
+    super(props); // mandar los props al constructor del padre
+    this.state = {
+      contador : 0
+    };
+  }
+
+aumentar = () => { 
+  this.setState({
+      contador : this.state.contador + 1
+  }) 
+}
+
+  render(){
+    return (
+      <div>
+        <p>{this.state.contador}</p>
+        <button onClick={ this.aumentar }>Aumentar</button>
+      </div>
+    );
+  }
+}
+
 class App extends Component {
   constructor() {
     super();
@@ -106,6 +149,9 @@ class App extends Component {
         </div>
         <div>
           <MiComponenteDeClase />
+        </div>
+        <div>
+          <Contador />
         </div>
       </div>
     );
