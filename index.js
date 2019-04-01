@@ -75,10 +75,18 @@ function D(props) {
 // 03.JSX
 
 /**
- * Para representar las interfaces de un componente utilizamos JSX, una extensión de JS que nos permite representar los
- * elementos de REACT que vamos a crear usando una sintaxis similar a HTML.
+ * Para representar las interfaces de un componente utilizamos JSX, una extensión de JS que nos permite representar los elementos de REACT que vamos a crear usando una sintaxis similar a HTML.
  * En JSX creamos elementos de REACT colocando el nombre del componente dentro de <MiComponente />
+ * Las llaves {} son los operadores que nos permiten especificar expresiones de JavaScript dentro de JSX, esto quiere decir que dentro de las llaves puedes colocar cualquier código de JavaScript valido.
+ * Lo que sucede dentro de las llaves es que el código se evalua y si retorna algo, como en el caso de la expresión aritmetica {2+3+4} que retorna el resultado de ejecutar la operación, ese algo se insertara en este punto de la interfaz {}, es como imprimir.
+ * Tambien podemos enviar funciones de JavaScript como PROPS hacia nuestro componentes.
  */
+function E(props) {
+  // y podemos acceder a ellos (en este caso al parrafo) a travez del arreglo children que esta dentro de las props
+  //console.log(props.children);
+  //return <p>Hola E {props.nombre}</p>;
+  return props.children;
+}
 
 // 04. state
 /** 
@@ -144,6 +152,13 @@ class App extends Component {
           <C nombre={nombreDos}/>
           <D nombre={nombreDos}/>
         </p>
+        <div>
+          <E nombre={nombreDos}>
+            <p>Hola!!!!!</p>
+            <p>Hola 2</p>
+            <p>{2+3+4}</p>
+          </E>
+        </div>
         <div>
           <MiComponenteFuncional />
         </div>
